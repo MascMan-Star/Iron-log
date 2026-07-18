@@ -69,6 +69,23 @@
     background:var(--yellow);
     margin-top:18px;
   }
+  .unit-toggle{
+    position:absolute;
+    top:4px;
+    right:0;
+    display:flex;
+    border:1px solid var(--line);
+  }
+  .unit-toggle button{
+    background:var(--iron);
+    color:var(--steel);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    padding:7px 12px;
+    border:none;
+  }
+  .unit-toggle button.active{ background:var(--yellow); color:var(--charcoal); font-weight:700; }
 
   .stats{
     display:grid;
@@ -439,10 +456,412 @@
     white-space:nowrap;
   }
   .suggestion-add:hover{ border-color:var(--yellow); background:rgba(232,185,35,0.08); }
+  .suggestion-remove{
+    background:transparent;
+    color:var(--steel);
+    border:1px solid var(--line);
+    font-size:15px;
+    line-height:1;
+    padding:5px 9px;
+  }
+  .suggestion-remove:hover{ color:var(--red); border-color:var(--red); }
+  .custom-ex-row{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .custom-ex-row input{
+    flex:1;
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-size:14px;
+    padding:10px 12px;
+    outline:none;
+  }
+  .custom-ex-row input:focus{ border-color:var(--yellow); }
+  .custom-ex-add{
+    background:var(--iron-light);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    padding:0 16px;
+  }
+  .custom-ex-add:hover{ border-color:var(--yellow); }
+
+  .template-card{
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    padding:14px;
+    margin-bottom:10px;
+  }
+  .template-card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .template-name{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    font-size:15px;
+    font-weight:600;
+    color:var(--chalk);
+  }
+  .template-count{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--steel);
+    margin-bottom:10px;
+  }
+  .template-actions{ display:flex; gap:8px; }
+  .template-btn{
+    flex:1;
+    background:var(--iron-light);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    padding:9px 0;
+  }
+  .template-btn:hover{ border-color:var(--yellow); }
+  .template-btn.danger:hover{ border-color:var(--red); color:var(--red); }
+  .template-exercise-list{ margin-top:12px; border-top:1px solid var(--line); padding-top:10px; }
+
+  .new-template-form{
+    background:var(--charcoal);
+    border:1px dashed var(--line);
+    padding:14px;
+    margin-top:14px;
+  }
+  .new-template-form input[type="text"]{
+    width:100%;
+    background:var(--iron);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-size:14px;
+    padding:10px 12px;
+    outline:none;
+    margin-bottom:10px;
+  }
+  .new-template-form input:focus{ border-color:var(--yellow); }
+  .template-pick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    max-height:220px;
+    overflow-y:auto;
+    margin-bottom:12px;
+    padding:8px;
+    background:var(--iron);
+    border:1px solid var(--line);
+  }
+  .template-pick-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:var(--chalk);
+    padding:4px;
+  }
+  .template-pick-item input{ accent-color:#e8b923; }
+
+  .history-search{
+    width:100%;
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-size:14px;
+    padding:11px 12px;
+    outline:none;
+    margin-bottom:18px;
+  }
+  .history-search:focus{ border-color:var(--yellow); }
+  .history-search::placeholder{ color:#5a564d; }
   .suggestion-hint{
     font-size:12px;
     color:var(--steel);
     margin-bottom:2px;
+  }
+
+  .progress-select{
+    width:100%;
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    color:var(--chalk);
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    padding:11px 12px;
+    outline:none;
+    margin-bottom:18px;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b923' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    background-size:16px;
+  }
+  .progress-select:focus{ border-color:var(--yellow); }
+
+  .view-toggle{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .view-toggle-btn{
+    flex:1;
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    color:var(--steel);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:9px 10px;
+    text-align:center;
+  }
+  .view-toggle-btn:hover{ border-color:var(--yellow); color:var(--chalk); }
+  .view-toggle-btn.active{ background:var(--yellow); color:var(--charcoal); border-color:var(--yellow); font-weight:700; }
+
+  .progress-metric-note{
+    font-size:11px;
+    color:var(--steel);
+    line-height:1.5;
+    margin-bottom:16px;
+    padding:10px 12px;
+    background:var(--charcoal);
+    border-left:2px solid var(--yellow);
+  }
+
+  .plate-viz{
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    height:150px;
+    margin:20px 0 24px;
+  }
+  .plate-side{ display:flex; align-items:flex-end; }
+  .plate-side.left{ flex-direction:row-reverse; }
+  .plate-bar{ width:15px; margin:0 1.5px; border-radius:2px; }
+  .plate-sleeve{
+    width:34px;
+    height:24px;
+    background:#5a564d;
+    border-radius:2px;
+    margin:0 3px;
+    align-self:center;
+  }
+  .plate-list{ margin-bottom:14px; }
+  .plate-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 2px;
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+  }
+  .plate-row:last-child{ border-bottom:none; }
+  .plate-swatch{
+    width:16px; height:16px;
+    border-radius:3px;
+    flex-shrink:0;
+  }
+  .plate-row-label{ color:var(--chalk); font-weight:700; min-width:56px; }
+  .plate-row-count{ color:var(--steel); }
+  .plate-total{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--steel);
+    padding-top:10px;
+    border-top:1px solid var(--line);
+  }
+  .plate-total b{ color:var(--yellow); }
+  .plate-warning{
+    font-size:12px;
+    color:var(--yellow);
+    margin-bottom:12px;
+  }
+
+  .streak-banner{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .streak-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:34px;
+    font-weight:700;
+    color:var(--yellow);
+  }
+  .streak-label{
+    font-size:12px;
+    color:var(--steel);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .weekday-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+  }
+  .weekday-col{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .weekday-letter{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.05em;
+    color:var(--steel);
+    text-transform:uppercase;
+  }
+  .weekday-letter.is-today{ color:var(--yellow); font-weight:700; }
+  .weekday-cell{
+    width:100%;
+    aspect-ratio:1;
+    border:1px solid var(--line);
+    background:var(--charcoal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+  }
+  .weekday-cell.trained{ background:var(--yellow); border-color:var(--yellow); }
+  .weekday-cell.rest{ background:var(--iron-light); border-color:var(--steel); }
+  .weekday-cell.future{ opacity:0.35; }
+  .weekday-actions{ display:flex; gap:4px; width:100%; }
+  .weekday-actions button{
+    flex:1;
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    color:var(--steel);
+    font-size:10px;
+    padding:5px 0;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .weekday-actions button.on{ background:var(--yellow); color:var(--charcoal); border-color:var(--yellow); font-weight:700; }
+  .weekday-actions button.rest-on{ background:var(--iron-light); color:var(--chalk); border-color:var(--steel); font-weight:700; }
+
+  .badge-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(96px, 1fr));
+    gap:10px;
+  }
+  .badge{
+    background:var(--charcoal);
+    border:1px solid var(--line);
+    padding:14px 8px;
+    text-align:center;
+    opacity:0.35;
+  }
+  .badge.unlocked{ opacity:1; border-color:var(--yellow); }
+  .badge-icon{ font-size:22px; margin-bottom:6px; }
+  .badge-name{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--chalk);
+    line-height:1.4;
+  }
+  .badge.unlocked .badge-name{ color:var(--yellow); }
+
+  .bw-row{ display:flex; gap:10px; align-items:flex-end; margin-bottom:18px; }
+  .bw-row .bw-input-wrap{ flex:1; }
+  .bw-add-btn{
+    background:var(--yellow);
+    color:var(--charcoal);
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-weight:600;
+    font-size:13px;
+    padding:11px 18px;
+  }
+  .bw-list-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 2px;
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+  }
+  .bw-list-row:last-child{ border-bottom:none; }
+  .bw-list-date{ color:var(--steel); }
+  .bw-list-weight{ color:var(--chalk); font-weight:700; }
+  .bw-list-delta{ font-size:11px; margin-left:8px; }
+  .bw-list-delta.up{ color:var(--yellow); }
+  .bw-list-delta.down{ color:var(--steel); }
+  .bw-del{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--steel);
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    padding:5px 9px;
+    text-transform:uppercase;
+  }
+  .bw-del:hover{ color:var(--red); border-color:var(--red); }
+
+  .pr-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:11px 2px;
+    border-bottom:1px solid var(--line);
+  }
+  .pr-row:last-child{ border-bottom:none; }
+  .pr-row-name{ font-size:14px; color:var(--chalk); }
+  .pr-row-weight{
+    font-family:'JetBrains Mono', monospace;
+    font-size:16px;
+    font-weight:700;
+    color:var(--yellow);
+  }
+
+  .progress-summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:6px;
+  }
+  .progress-summary-main{
+    font-family:'JetBrains Mono', monospace;
+    font-size:22px;
+    font-weight:700;
+    color:var(--chalk);
+  }
+  .progress-summary-delta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    font-weight:700;
+  }
+  .progress-summary-delta.up{ color:var(--yellow); }
+  .progress-summary-delta.down{ color:var(--steel); }
+  .progress-summary-label{
+    font-size:10px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--steel);
+    margin-bottom:14px;
+  }
+
+  .progress-chart-wrap{ width:100%; overflow-x:auto; }
+  .progress-point-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    fill:var(--steel);
+  }
+  .progress-date-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    fill:var(--steel);
   }
 
   footer{
@@ -465,6 +884,10 @@
 <div class="wrap">
 
   <header>
+    <div class="unit-toggle" id="unitToggle">
+      <button data-unit="kg" class="active" onclick="setUnit('kg')">KG</button>
+      <button data-unit="lb" onclick="setUnit('lb')">LB</button>
+    </div>
     <div class="eyebrow">// Personal training log</div>
     <h1>IRON <span>LOG</span></h1>
     <p class="subline">Every set counts. Log it, track it, break it next time.</p>
@@ -487,10 +910,45 @@
   </div>
 
   <div class="panel">
-    <div class="panel-title">Weekly volume</div>
-    <div id="chartContainer">
-      <div class="chart-empty">Log a few sets to see your weekly volume build up.</div>
+    <div class="panel-title">This week</div>
+    <div class="streak-banner">
+      <div class="streak-num" id="streakNum">0</div>
+      <div class="streak-label" id="streakLabel">Day streak</div>
     </div>
+    <div class="weekday-grid" id="weekdayGrid"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Milestones</div>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Training volume</div>
+    <div class="view-toggle" id="volumeViewToggle">
+      <button class="view-toggle-btn active" data-mode="week" onclick="setVolumeMode('week')">Weekly</button>
+      <button class="view-toggle-btn" data-mode="month" onclick="setVolumeMode('month')">Monthly</button>
+    </div>
+    <div id="chartContainer">
+      <div class="chart-empty">Log a few sets to see your volume build up.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Bodyweight</div>
+    <div class="bw-row">
+      <div class="bw-input-wrap">
+        <label for="bwInput" id="bwLabel">Weight (kg)</label>
+        <input type="number" id="bwInput" placeholder="75" min="0" step="0.1">
+      </div>
+      <button class="bw-add-btn" onclick="addBodyweight()">Log</button>
+    </div>
+    <div id="bodyweightBody"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Personal records</div>
+    <div id="prBoardBody"></div>
   </div>
 
   <div class="panel">
@@ -500,7 +958,22 @@
   </div>
 
   <div class="panel">
+    <div class="panel-title">Workout templates</div>
+    <div id="templateList"></div>
+    <button class="cancel-edit" style="width:100%; margin-top:10px;" onclick="toggleNewTemplateForm()" id="newTemplateToggleBtn">+ New template</button>
+    <div class="new-template-form" id="newTemplateForm" style="display:none;">
+      <input type="text" id="newTemplateName" placeholder="Template name, e.g. Push Day">
+      <div class="template-pick-grid" id="templatePickGrid"></div>
+      <div class="form-actions">
+        <button class="btn-add" onclick="saveTemplate()">Save template</button>
+        <button class="cancel-edit" onclick="toggleNewTemplateForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
     <div class="panel-title" id="formTitle">Log a set</div>
+    <button class="template-btn" style="width:100%; margin-bottom:16px;" onclick="repeatLastSet()" id="repeatLastBtn">↻ Repeat last set</button>
     <form id="entryForm">
       <div class="row">
         <div class="full" style="grid-column:1/-1;">
@@ -510,7 +983,7 @@
       </div>
       <div class="row">
         <div>
-          <label for="weight">Weight (kg)</label>
+          <label for="weight" id="weightLabel">Weight (kg)</label>
           <input type="number" id="weight" placeholder="80" min="0" step="0.5" required>
         </div>
         <div>
@@ -558,7 +1031,38 @@
   </div>
 
   <div class="panel">
+    <div class="panel-title">Plate calculator</div>
+    <div class="row">
+      <div>
+        <label for="barWeight">Bar weight (kg)</label>
+        <input type="number" id="barWeight" value="20" min="0" step="0.5" oninput="calculatePlates()">
+      </div>
+      <div>
+        <label for="targetWeight">Target weight (kg)</label>
+        <input type="number" id="targetWeight" placeholder="100" min="0" step="0.5" oninput="calculatePlates()">
+      </div>
+    </div>
+    <div id="plateResult" style="margin-top:18px;"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Progress</div>
+    <select class="progress-select" id="progressExerciseSelect" onchange="renderProgressChart(this.value)"></select>
+    <div class="view-toggle" id="progressViewToggle">
+      <button class="view-toggle-btn active" data-mode="session" onclick="setProgressMode('session')">By session</button>
+      <button class="view-toggle-btn" data-mode="week" onclick="setProgressMode('week')">By week</button>
+    </div>
+    <div class="view-toggle" id="progressMetricToggle">
+      <button class="view-toggle-btn active" data-metric="weight" onclick="setProgressMetric('weight')">Top weight</button>
+      <button class="view-toggle-btn" data-metric="e1rm" onclick="setProgressMetric('e1rm')">Est. 1RM</button>
+    </div>
+    <div class="progress-metric-note" id="progressMetricNote" style="display:none;">Estimated 1-rep max, calculated from your weight and reps on each set (Epley formula) — so a heavier set of 5 and a lighter set of 12 can both show real progress.</div>
+    <div id="progressBody"></div>
+  </div>
+
+  <div class="panel">
     <div class="panel-title">Training history</div>
+    <input type="text" class="history-search" id="historySearch" placeholder="Search by exercise name..." oninput="render()">
     <div id="logContainer">
       <div class="empty">
         <b>Log is empty</b>
@@ -571,19 +1075,49 @@
 </div>
 
 <script>
+// --- Unit system (kg/lb) ---
+const UNIT_KEY = 'iron-log-unit';
+const KG_TO_LB = 2.20462;
+let currentUnit = localStorage.getItem(UNIT_KEY) || 'kg';
+
+function toDisplayWeight(kgVal){
+  if(kgVal === null || kgVal === undefined || isNaN(kgVal)) return kgVal;
+  return currentUnit === 'lb' ? Math.round(kgVal * KG_TO_LB * 10) / 10 : Math.round(kgVal * 10) / 10;
+}
+function fromDisplayWeight(displayVal){
+  if(displayVal === null || displayVal === undefined || isNaN(displayVal)) return displayVal;
+  return currentUnit === 'lb' ? Math.round((displayVal / KG_TO_LB) * 100) / 100 : Math.round(displayVal * 100) / 100;
+}
+function fmtW(kgVal){
+  return `${toDisplayWeight(kgVal)}${currentUnit}`;
+}
+function setUnit(unit){
+  currentUnit = unit;
+  localStorage.setItem(UNIT_KEY, unit);
+  document.querySelectorAll('#unitToggle button').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.unit === unit);
+  });
+  document.getElementById('weight').placeholder = unit === 'lb' ? '175' : '80';
+  document.getElementById('weightLabel').textContent = unit === 'lb' ? 'Weight (lb)' : 'Weight (kg)';
+  render();
+  renderBodyweightPanel();
+}
+
 const STORAGE_KEY = 'iron-log-entries';
 let entries = [];
 let editingId = null;
 
 // --- Exercise suggestions ---
-const EXERCISE_DB = {
-  'Chest': ['Barbell bench press', 'Incline dumbbell press', 'Chest dip', 'Push-up', 'Cable fly', 'Incline machine press'],
-  'Back': ['Pull-up', 'Deadlift', 'Barbell row', 'Lat pulldown', 'Seated cable row', 'Single-arm dumbbell row'],
-  'Legs': ['Back squat', 'Romanian deadlift', 'Leg press', 'Walking lunge', 'Leg curl', 'Calf raise'],
-  'Shoulders': ['Overhead press', 'Lateral raise', 'Face pull', 'Arnold press', 'Rear delt fly', 'Upright row'],
-  'Arms': ['Barbell curl', 'Hammer curl', 'Close-grip bench press', 'Tricep pushdown', 'Skull crusher', 'Preacher curl'],
-  'Core': ['Hanging leg raise', 'Plank', 'Cable crunch', 'Russian twist', 'Ab wheel rollout', 'Weighted sit-up']
+const DEFAULT_EXERCISE_DB = {
+  'Chest': ['Barbell bench press', 'Incline dumbbell press', 'Chest dip', 'Push-up', 'Cable fly', 'Incline machine press', 'Decline bench press', 'Pec deck machine', 'Dumbbell bench press'],
+  'Back': ['Pull-up', 'Deadlift', 'Barbell row', 'Lat pulldown', 'Seated cable row', 'Single-arm dumbbell row', 'Chin-up', 'T-bar row', 'Straight-arm pulldown'],
+  'Legs': ['Back squat', 'Romanian deadlift', 'Leg press', 'Walking lunge', 'Leg curl', 'Calf raise', 'Front squat', 'Bulgarian split squat', 'Leg extension', 'Hip thrust'],
+  'Shoulders': ['Overhead press', 'Lateral raise', 'Face pull', 'Arnold press', 'Rear delt fly', 'Upright row', 'Seated dumbbell press', 'Cable lateral raise'],
+  'Arms': ['Barbell curl', 'Hammer curl', 'Close-grip bench press', 'Tricep pushdown', 'Skull crusher', 'Preacher curl', 'Concentration curl', 'Overhead tricep extension', 'Cable curl'],
+  'Core': ['Hanging leg raise', 'Plank', 'Cable crunch', 'Russian twist', 'Ab wheel rollout', 'Weighted sit-up', 'Bicycle crunch', 'Side plank']
 };
+
+let EXERCISE_DB = JSON.parse(JSON.stringify(DEFAULT_EXERCISE_DB));
 
 // --- Exercise pictograms (simple gym-signage style icons) ---
 function seg(x1,y1,x2,y2){ return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#e8b923" stroke-width="6" stroke-linecap="round"/>`; }
@@ -634,7 +1168,13 @@ const EXERCISE_ICON_MAP = {
   'Overhead press':'overheadPress','Arnold press':'overheadPress','Lateral raise':'lateralRaise','Upright row':'uprightRow',
   'Face pull':'facePull','Rear delt fly':'rearDeltFly',
   'Barbell curl':'curl','Hammer curl':'curl','Preacher curl':'curl','Tricep pushdown':'tricepExt','Skull crusher':'tricepExt',
-  'Hanging leg raise':'legRaise','Plank':'plank','Cable crunch':'crunch','Weighted sit-up':'crunch','Russian twist':'twist','Ab wheel rollout':'rollout'
+  'Hanging leg raise':'legRaise','Plank':'plank','Cable crunch':'crunch','Weighted sit-up':'crunch','Russian twist':'twist','Ab wheel rollout':'rollout',
+  'Decline bench press':'horizontalPress','Pec deck machine':'fly','Dumbbell bench press':'horizontalPress',
+  'Chin-up':'pullup','T-bar row':'row','Straight-arm pulldown':'pulldown',
+  'Front squat':'squat','Bulgarian split squat':'lunge','Leg extension':'legCurl','Hip thrust':'hinge',
+  'Seated dumbbell press':'overheadPress','Cable lateral raise':'lateralRaise',
+  'Concentration curl':'curl','Overhead tricep extension':'tricepExt','Cable curl':'curl',
+  'Bicycle crunch':'crunch','Side plank':'plank'
 };
 
 function getExerciseIcon(name){
@@ -643,6 +1183,163 @@ function getExerciseIcon(name){
 }
 
 let selectedBodyPart = 'Chest';
+
+// --- Workout templates ---
+const TEMPLATE_KEY = 'iron-log-templates';
+let templates = [];
+let activeTemplateId = null;
+
+function loadTemplates(){
+  try{
+    const raw = localStorage.getItem(TEMPLATE_KEY);
+    templates = raw ? JSON.parse(raw) : [];
+  }catch(e){ templates = []; }
+}
+
+function saveTemplates(){
+  try{ localStorage.setItem(TEMPLATE_KEY, JSON.stringify(templates)); }
+  catch(e){ console.error('Could not save templates', e); }
+}
+
+function toggleNewTemplateForm(){
+  const form = document.getElementById('newTemplateForm');
+  const isHidden = form.style.display === 'none';
+  form.style.display = isHidden ? 'block' : 'none';
+  document.getElementById('newTemplateToggleBtn').style.display = isHidden ? 'none' : 'block';
+  if(isHidden) renderTemplatePickGrid();
+}
+
+function renderTemplatePickGrid(){
+  const grid = document.getElementById('templatePickGrid');
+  const allExercises = [];
+  Object.keys(EXERCISE_DB).forEach(part=>{
+    EXERCISE_DB[part].forEach(name=>{
+      if(!allExercises.includes(name)) allExercises.push(name);
+    });
+  });
+  grid.innerHTML = allExercises.map(name => `
+    <label class="template-pick-item">
+      <input type="checkbox" value="${escapeHtml(name)}">
+      <span>${escapeHtml(name)}</span>
+    </label>
+  `).join('');
+}
+
+function saveTemplate(){
+  const name = document.getElementById('newTemplateName').value.trim();
+  const checked = Array.from(document.querySelectorAll('#templatePickGrid input:checked')).map(cb => cb.value);
+  if(!name || checked.length === 0) return;
+
+  templates.push({ id: Date.now().toString(36), name, exercises: checked });
+  saveTemplates();
+  document.getElementById('newTemplateName').value = '';
+  toggleNewTemplateForm();
+  renderTemplateList();
+}
+
+function deleteTemplate(id){
+  templates = templates.filter(t => t.id !== id);
+  if(activeTemplateId === id) activeTemplateId = null;
+  saveTemplates();
+  renderTemplateList();
+}
+
+function loadTemplate(id){
+  activeTemplateId = activeTemplateId === id ? null : id;
+  renderTemplateList();
+}
+
+function renderTemplateList(){
+  const container = document.getElementById('templateList');
+  if(!container) return;
+
+  if(templates.length === 0){
+    container.innerHTML = `<div class="chart-empty">No templates yet — save a routine below to load it in one tap next time.</div>`;
+    return;
+  }
+
+  container.innerHTML = templates.map(t => {
+    const isActive = t.id === activeTemplateId;
+    const exerciseRows = t.exercises.map(name => `
+      <div class="suggestion-row">
+        <div class="suggestion-left">
+          <div class="suggestion-icon">${getExerciseIcon(name)}</div>
+          <div class="suggestion-name">${escapeHtml(name)}</div>
+        </div>
+        <button class="suggestion-add" onclick="quickAddExercise('${name.replace(/'/g, "\\'")}')">Use</button>
+      </div>
+    `).join('');
+
+    return `
+      <div class="template-card">
+        <div class="template-card-head">
+          <div class="template-name">${escapeHtml(t.name)}</div>
+        </div>
+        <div class="template-count">${t.exercises.length} exercise${t.exercises.length === 1 ? '' : 's'}</div>
+        <div class="template-actions">
+          <button class="template-btn" onclick="loadTemplate('${t.id}')">${isActive ? 'Hide' : 'Load'}</button>
+          <button class="template-btn danger" onclick="deleteTemplate('${t.id}')">Delete</button>
+        </div>
+        ${isActive ? `<div class="template-exercise-list">${exerciseRows}</div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+// --- Custom exercise list ---
+const CUSTOM_EX_KEY = 'iron-log-custom-exercises';
+let customExercises = { added: {}, removed: {} };
+
+function loadCustomExercises(){
+  try{
+    const raw = localStorage.getItem(CUSTOM_EX_KEY);
+    customExercises = raw ? JSON.parse(raw) : { added: {}, removed: {} };
+  }catch(e){ customExercises = { added: {}, removed: {} }; }
+  rebuildExerciseDB();
+}
+
+function saveCustomExercises(){
+  try{ localStorage.setItem(CUSTOM_EX_KEY, JSON.stringify(customExercises)); }
+  catch(e){ console.error('Could not save custom exercises', e); }
+}
+
+function rebuildExerciseDB(){
+  EXERCISE_DB = {};
+  Object.keys(DEFAULT_EXERCISE_DB).forEach(part=>{
+    const removed = customExercises.removed[part] || [];
+    const added = customExercises.added[part] || [];
+    const base = DEFAULT_EXERCISE_DB[part].filter(name => !removed.includes(name));
+    EXERCISE_DB[part] = [...base, ...added];
+  });
+}
+
+function addCustomExercise(){
+  const input = document.getElementById('customExerciseInput');
+  const name = input.value.trim();
+  if(!name) return;
+  if(!customExercises.added[selectedBodyPart]) customExercises.added[selectedBodyPart] = [];
+  const alreadyExists = EXERCISE_DB[selectedBodyPart].some(n => n.toLowerCase() === name.toLowerCase());
+  if(alreadyExists) { input.value=''; return; }
+  customExercises.added[selectedBodyPart].push(name);
+  saveCustomExercises();
+  rebuildExerciseDB();
+  input.value = '';
+  renderSuggestionList();
+}
+
+function removeSuggestionExercise(name){
+  if(!customExercises.removed[selectedBodyPart]) customExercises.removed[selectedBodyPart] = [];
+  // if it's a custom-added exercise, just remove it from added list instead of tracking a removal
+  const addedList = customExercises.added[selectedBodyPart] || [];
+  const addedIdx = addedList.findIndex(n => n === name);
+  if(addedIdx !== -1){
+    addedList.splice(addedIdx, 1);
+  } else if(!customExercises.removed[selectedBodyPart].includes(name)){
+    customExercises.removed[selectedBodyPart].push(name);
+  }
+  saveCustomExercises();
+  rebuildExerciseDB();
+  renderSuggestionList();
+}
 
 function renderBodyPartTabs(){
   const tabs = document.getElementById('bodypartTabs');
@@ -661,16 +1358,23 @@ function renderSuggestionList(){
   const list = document.getElementById('suggestionList');
   const exercises = EXERCISE_DB[selectedBodyPart] || [];
   list.innerHTML = `
-    <div class="suggestion-hint">Tap an exercise to load it into the log form below.</div>
+    <div class="suggestion-hint">Tap an exercise to load it into the log form below. Tap × to remove it from this list.</div>
     ${exercises.map(name => `
       <div class="suggestion-row">
         <div class="suggestion-left">
           <div class="suggestion-icon">${getExerciseIcon(name)}</div>
           <div class="suggestion-name">${escapeHtml(name)}</div>
         </div>
-        <button class="suggestion-add" onclick="quickAddExercise('${name.replace(/'/g, "\\'")}')">Use</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <button class="suggestion-add" onclick="quickAddExercise('${name.replace(/'/g, "\\'")}')">Use</button>
+          <button class="suggestion-remove" onclick="removeSuggestionExercise('${name.replace(/'/g, "\\'")}')" title="Remove from list">×</button>
+        </div>
       </div>
     `).join('')}
+    <div class="custom-ex-row">
+      <input type="text" id="customExerciseInput" placeholder="Add your own exercise..." onkeypress="if(event.key==='Enter') addCustomExercise()">
+      <button class="custom-ex-add" onclick="addCustomExercise()">Add</button>
+    </div>
   `;
 }
 
@@ -869,17 +1573,39 @@ function weekKey(dateStr){
   return getMonday(dateStr).toISOString().slice(0,10);
 }
 
+function monthKey(dateStr){
+  return dateStr.slice(0,7); // YYYY-MM
+}
+
+let volumeViewMode = 'week';
+
+function setVolumeMode(mode){
+  volumeViewMode = mode;
+  document.querySelectorAll('#volumeViewToggle .view-toggle-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  renderChart();
+}
+
 function renderChart(){
   const container = document.getElementById('chartContainer');
   if(entries.length === 0){
-    container.innerHTML = `<div class="chart-empty">Log a few sets to see your weekly volume build up.</div>`;
+    container.innerHTML = `<div class="chart-empty">Log a few sets to see your volume build up.</div>`;
     return;
   }
 
+  if(volumeViewMode === 'month'){
+    renderMonthlyChart(container);
+  } else {
+    renderWeeklyChart(container);
+  }
+}
+
+function renderWeeklyChart(container){
   const volumeByWeek = {};
   entries.forEach(e=>{
     const wk = weekKey(e.date);
-    const vol = e.weight * e.reps * e.sets;
+    const vol = toDisplayWeight(e.weight) * e.reps * e.sets;
     volumeByWeek[wk] = (volumeByWeek[wk] || 0) + vol;
   });
 
@@ -919,6 +1645,505 @@ function renderChart(){
   `;
 }
 
+function renderMonthlyChart(container){
+  const volumeByMonth = {};
+  entries.forEach(e=>{
+    const mk = monthKey(e.date);
+    const vol = toDisplayWeight(e.weight) * e.reps * e.sets;
+    volumeByMonth[mk] = (volumeByMonth[mk] || 0) + vol;
+  });
+
+  const now = new Date();
+  const currentMonthKey = now.toISOString().slice(0,7);
+
+  // build last 6 months ending on current month, oldest to newest
+  const months = [];
+  for(let i=5; i>=0; i--){
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    months.push(d.toISOString().slice(0,7));
+  }
+
+  const maxVol = Math.max(...months.map(m => volumeByMonth[m] || 0), 1);
+
+  const bars = months.map(m=>{
+    const vol = volumeByMonth[m] || 0;
+    const heightPct = vol === 0 ? 1 : Math.max((vol / maxVol) * 100, 3);
+    const isCurrent = m === currentMonthKey;
+    return `
+      <div class="chart-col ${isCurrent ? 'current' : ''}">
+        <div class="chart-val">${vol > 0 ? Math.round(vol).toLocaleString() : ''}</div>
+        <div class="chart-bar" style="height:${heightPct}%"></div>
+      </div>`;
+  }).join('');
+
+  const labels = months.map(m=>{
+    const isCurrent = m === currentMonthKey;
+    const d = new Date(m + '-01T00:00:00');
+    const label = isCurrent ? 'This mo' : d.toLocaleDateString('en-US', { month:'short' });
+    return `<div class="chart-label">${label}</div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="chart-wrap">${bars}</div>
+    <div class="chart-labels">${labels}</div>
+  `;
+}
+
+// --- Plate calculator ---
+const PLATE_SET = [
+  {kg:25, color:'#c1392b'},
+  {kg:20, color:'#3f7cd6'},
+  {kg:15, color:'#e8b923'},
+  {kg:10, color:'#4a9d5f'},
+  {kg:5,  color:'#f2efe9'},
+  {kg:2.5, color:'#1c1b1a', outline:true},
+  {kg:1.25, color:'#a8a49c'}
+];
+
+function calculatePlates(){
+  const barWeight = parseFloat(document.getElementById('barWeight').value) || 0;
+  const targetWeightRaw = document.getElementById('targetWeight').value;
+  const result = document.getElementById('plateResult');
+
+  if(targetWeightRaw === '' || isNaN(parseFloat(targetWeightRaw))){
+    result.innerHTML = `<div class="chart-empty">Enter a target weight to see the plate breakdown.</div>`;
+    return;
+  }
+  const targetWeight = parseFloat(targetWeightRaw);
+
+  if(targetWeight <= 0){
+    result.innerHTML = `<div class="chart-empty">Enter a target weight to see the plate breakdown.</div>`;
+    return;
+  }
+  if(targetWeight < barWeight){
+    result.innerHTML = `<div class="chart-empty">Target is lighter than the bar itself (${barWeight}kg).</div>`;
+    return;
+  }
+
+  let remaining = Math.round(((targetWeight - barWeight) / 2) * 100) / 100;
+  const breakdown = [];
+  PLATE_SET.forEach(p=>{
+    const count = Math.floor((remaining + 0.001) / p.kg);
+    if(count > 0){
+      breakdown.push({ kg: p.kg, color: p.color, outline: p.outline, count });
+      remaining = Math.round((remaining - count * p.kg) * 100) / 100;
+    }
+  });
+
+  const actualAchieved = Math.round((targetWeight - remaining*2) * 100) / 100;
+  const offBy = Math.round((targetWeight - actualAchieved) * 100) / 100;
+
+  const plateBars = (side) => {
+    const ordered = side === 'left' ? breakdown : breakdown;
+    return ordered.map(p=>{
+      const height = Math.round(38 + (p.kg/25) * 92);
+      const border = p.outline ? `border:1px solid var(--line);` : '';
+      return Array(p.count).fill(0).map(()=>
+        `<div class="plate-bar" style="height:${height}px; background:${p.color}; ${border}"></div>`
+      ).join('');
+    }).join('');
+  };
+
+  const listRows = breakdown.map(p=>`
+    <div class="plate-row">
+      <span class="plate-swatch" style="background:${p.color}; ${p.outline ? 'border:1px solid var(--line);' : ''}"></span>
+      <span class="plate-row-label">${p.kg}kg</span>
+      <span class="plate-row-count">× ${p.count} per side</span>
+    </div>
+  `).join('');
+
+  result.innerHTML = `
+    <div class="plate-viz">
+      <div class="plate-side left">${plateBars('left')}</div>
+      <div class="plate-sleeve"></div>
+      <div class="plate-side">${plateBars('right')}</div>
+    </div>
+    ${breakdown.length === 0 ? `<div class="chart-empty" style="padding:0 0 16px;">Just the bar — no plates needed.</div>` : ''}
+    ${offBy !== 0 ? `<div class="plate-warning">Closest possible: ${actualAchieved}kg (off by ${offBy}kg — smallest plate is 1.25kg)</div>` : ''}
+    ${breakdown.length > 0 ? `<div class="plate-list">${listRows}</div>` : ''}
+    <div class="plate-total">Total: <b>${actualAchieved}kg</b> = ${barWeight}kg bar + ${(actualAchieved - barWeight).toFixed(2)}kg in plates</div>
+  `;
+}
+
+// --- Bodyweight tracker ---
+const BW_KEY = 'iron-log-bodyweight';
+let bodyweights = [];
+
+function loadBodyweights(){
+  try{
+    const raw = localStorage.getItem(BW_KEY);
+    bodyweights = raw ? JSON.parse(raw) : [];
+  }catch(e){ bodyweights = []; }
+}
+
+function saveBodyweights(){
+  try{ localStorage.setItem(BW_KEY, JSON.stringify(bodyweights)); }
+  catch(e){ console.error('Could not save bodyweight', e); }
+}
+
+function addBodyweight(){
+  const input = document.getElementById('bwInput');
+  const displayVal = parseFloat(input.value);
+  if(isNaN(displayVal) || displayVal <= 0) return;
+  const kgVal = fromDisplayWeight(displayVal);
+  const today = new Date().toISOString().slice(0,10);
+
+  const existingIdx = bodyweights.findIndex(b => b.date === today);
+  if(existingIdx !== -1){
+    bodyweights[existingIdx].weight = kgVal;
+  } else {
+    bodyweights.push({ id: Date.now().toString(36), date: today, weight: kgVal });
+  }
+  saveBodyweights();
+  input.value = '';
+  renderBodyweightPanel();
+}
+
+function deleteBodyweight(id){
+  bodyweights = bodyweights.filter(b => b.id !== id);
+  saveBodyweights();
+  renderBodyweightPanel();
+}
+
+function renderBodyweightPanel(){
+  const label = document.getElementById('bwLabel');
+  if(label) label.textContent = currentUnit === 'lb' ? 'Weight (lb)' : 'Weight (kg)';
+  const bwInput = document.getElementById('bwInput');
+  if(bwInput) bwInput.placeholder = currentUnit === 'lb' ? '165' : '75';
+
+  const body = document.getElementById('bodyweightBody');
+  if(!body) return;
+
+  if(bodyweights.length === 0){
+    body.innerHTML = `<div class="chart-empty">Log your weight to start tracking it over time.</div>`;
+    return;
+  }
+
+  const sorted = [...bodyweights].sort((a,b)=> b.date.localeCompare(a.date));
+  const rows = sorted.map((b,i)=>{
+    const prev = sorted[i+1];
+    let deltaHtml = '';
+    if(prev){
+      const deltaKg = b.weight - prev.weight;
+      if(Math.abs(deltaKg) > 0.01){
+        const deltaDisplay = toDisplayWeight(Math.abs(deltaKg));
+        const cls = deltaKg > 0 ? 'up' : 'down';
+        const sign = deltaKg > 0 ? '+' : '−';
+        deltaHtml = `<span class="bw-list-delta ${cls}">${sign}${deltaDisplay}${currentUnit}</span>`;
+      }
+    }
+    const d = new Date(b.date + 'T00:00:00');
+    const dateLabel = d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    return `
+      <div class="bw-list-row">
+        <span class="bw-list-date">${dateLabel}</span>
+        <span><span class="bw-list-weight">${fmtW(b.weight)}</span>${deltaHtml}</span>
+        <button class="bw-del" onclick="deleteBodyweight('${b.id}')">Remove</button>
+      </div>`;
+  }).join('');
+
+  body.innerHTML = `<div>${rows}</div>`;
+}
+
+function renderPRBoard(){
+  const body = document.getElementById('prBoardBody');
+  if(!body) return;
+
+  if(entries.length === 0){
+    body.innerHTML = `<div class="chart-empty">Log a few sets to start building your PR board.</div>`;
+    return;
+  }
+
+  const best = {}; // key: lowercased name -> { name, weight }
+  entries.forEach(e=>{
+    const key = e.exercise.toLowerCase().trim();
+    if(!best[key] || e.weight > best[key].weight){
+      best[key] = { name: e.exercise, weight: e.weight };
+    }
+  });
+
+  const sorted = Object.values(best).sort((a,b)=> b.weight - a.weight);
+
+  body.innerHTML = sorted.map(pr => `
+    <div class="pr-row">
+      <span class="pr-row-name">${escapeHtml(pr.name)}</span>
+      <span class="pr-row-weight">${fmtW(pr.weight)}</span>
+    </div>
+  `).join('');
+}
+
+// --- Milestones ---
+const BADGE_DEFS = [
+  { key:'first_set', icon:'🏋️', name:'First set logged', check: (s)=> s.totalSets >= 1 },
+  { key:'sets_25', icon:'💪', name:'25 sets logged', check: (s)=> s.totalSets >= 25 },
+  { key:'sets_100', icon:'🔥', name:'100 sets logged', check: (s)=> s.totalSets >= 100 },
+  { key:'sets_500', icon:'⚡', name:'500 sets logged', check: (s)=> s.totalSets >= 500 },
+  { key:'days_5', icon:'📅', name:'5 days trained', check: (s)=> s.totalDays >= 5 },
+  { key:'days_20', icon:'🗓️', name:'20 days trained', check: (s)=> s.totalDays >= 20 },
+  { key:'days_50', icon:'🏆', name:'50 days trained', check: (s)=> s.totalDays >= 50 },
+  { key:'first_pr', icon:'⭐', name:'First PR', check: (s)=> s.totalPRs >= 1 },
+  { key:'prs_10', icon:'🌟', name:'10 PRs on record', check: (s)=> s.totalPRs >= 10 },
+  { key:'streak_7', icon:'🔥', name:'7 day streak', check: (s)=> s.streak >= 7 },
+  { key:'streak_30', icon:'👑', name:'30 day streak', check: (s)=> s.streak >= 30 },
+  { key:'lift_100kg', icon:'🏋️‍♂️', name:'100kg+ on a lift', check: (s)=> s.maxWeight >= 100 },
+  { key:'exercises_10', icon:'📋', name:'10 different exercises', check: (s)=> s.uniqueExercises >= 10 }
+];
+
+function renderMilestones(){
+  const grid = document.getElementById('badgeGrid');
+  if(!grid) return;
+
+  const totalSets = entries.length;
+  const totalDays = new Set(entries.map(e=>e.date)).size;
+  const prs = getPRs();
+  const totalPRs = Object.keys(prs).length;
+  const streak = calcStreak();
+  const maxWeight = entries.length ? Math.max(...entries.map(e=>e.weight)) : 0;
+  const uniqueExercises = new Set(entries.map(e=>e.exercise)).size;
+
+  const stats = { totalSets, totalDays, totalPRs, streak, maxWeight, uniqueExercises };
+
+  grid.innerHTML = BADGE_DEFS.map(b=>{
+    const unlocked = b.check(stats);
+    return `
+      <div class="badge ${unlocked ? 'unlocked' : ''}">
+        <div class="badge-icon">${unlocked ? b.icon : '🔒'}</div>
+        <div class="badge-name">${b.name}</div>
+      </div>`;
+  }).join('');
+}
+
+// --- Weekly check-in / streak tracker ---
+const GYMDAY_KEY = 'iron-log-gymdays';
+let gymDays = {};
+
+function loadGymDays(){
+  try{
+    const raw = localStorage.getItem(GYMDAY_KEY);
+    gymDays = raw ? JSON.parse(raw) : {};
+  }catch(e){ gymDays = {}; }
+}
+
+function saveGymDays(){
+  try{ localStorage.setItem(GYMDAY_KEY, JSON.stringify(gymDays)); }
+  catch(e){ console.error('Could not save gym days', e); }
+}
+
+function setGymDay(dateStr, status){
+  if(gymDays[dateStr] === status){
+    delete gymDays[dateStr]; // tap again to clear
+  } else {
+    gymDays[dateStr] = status;
+  }
+  saveGymDays();
+  renderWeekdayGrid();
+  renderMilestones();
+}
+
+function calcStreak(){
+  const todayStr = new Date().toISOString().slice(0,10);
+  let streak = 0;
+  let cursor = new Date(todayStr + 'T00:00:00');
+
+  while(true){
+    const dStr = cursor.toISOString().slice(0,10);
+    const hasEntry = entries.some(e => e.date === dStr);
+    const status = gymDays[dStr] || (hasEntry ? 'trained' : null);
+    if(status === 'trained' || status === 'rest'){
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    } else if(dStr === todayStr){
+      // today not marked yet — don't break the streak, just don't count it
+      cursor.setDate(cursor.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+function renderWeekdayGrid(){
+  const grid = document.getElementById('weekdayGrid');
+  const todayStr = new Date().toISOString().slice(0,10);
+  const monday = getMonday(todayStr);
+  const dayLetters = ['M','T','W','T','F','S','S'];
+
+  let html = '';
+  for(let i=0; i<7; i++){
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const dStr = d.toISOString().slice(0,10);
+    const isToday = dStr === todayStr;
+    const isFuture = dStr > todayStr;
+    const hasEntry = entries.some(e => e.date === dStr);
+    const status = gymDays[dStr] || (hasEntry && !isFuture ? 'trained' : null);
+
+    const cellClass = status === 'trained' ? 'trained' : (status === 'rest' ? 'rest' : '');
+    const cellIcon = status === 'trained' ? '✓' : (status === 'rest' ? 'z' : '');
+
+    html += `
+      <div class="weekday-col">
+        <div class="weekday-letter ${isToday ? 'is-today' : ''}">${dayLetters[i]}</div>
+        <div class="weekday-cell ${cellClass} ${isFuture ? 'future' : ''}">${cellIcon}</div>
+        ${!isFuture ? `
+          <div class="weekday-actions">
+            <button class="${status === 'trained' ? 'on' : ''}" onclick="setGymDay('${dStr}','trained')" title="Trained">T</button>
+            <button class="${status === 'rest' ? 'rest-on' : ''}" onclick="setGymDay('${dStr}','rest')" title="Rest day">R</button>
+          </div>
+        ` : ''}
+      </div>`;
+  }
+  grid.innerHTML = html;
+
+  const streak = calcStreak();
+  document.getElementById('streakNum').textContent = streak;
+  document.getElementById('streakLabel').textContent = streak === 1 ? 'Day streak' : 'Day streak';
+}
+
+let selectedProgressExercise = null;
+let progressViewMode = 'session';
+let progressMetricMode = 'weight';
+
+function setProgressMode(mode){
+  progressViewMode = mode;
+  document.querySelectorAll('#progressViewToggle .view-toggle-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+  renderProgressChart(selectedProgressExercise);
+}
+
+function setProgressMetric(metric){
+  progressMetricMode = metric;
+  document.querySelectorAll('#progressMetricToggle .view-toggle-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.metric === metric);
+  });
+  document.getElementById('progressMetricNote').style.display = metric === 'e1rm' ? 'block' : 'none';
+  renderProgressChart(selectedProgressExercise);
+}
+
+function estimatedOneRepMax(weight, reps){
+  if(reps <= 1) return weight;
+  return Math.round(weight * (1 + reps/30) * 2) / 2; // Epley formula, rounded to nearest 0.5
+}
+
+function renderProgressPanel(){
+  const select = document.getElementById('progressExerciseSelect');
+  const uniqueExercises = [...new Set(entries.map(e => e.exercise))].sort((a,b)=> a.localeCompare(b));
+
+  if(uniqueExercises.length === 0){
+    select.innerHTML = `<option value="">Log a set to see progress</option>`;
+    document.getElementById('progressBody').innerHTML = `<div class="chart-empty">Once you've logged the same exercise on a few different days, a trend line will show up here.</div>`;
+    return;
+  }
+
+  if(!selectedProgressExercise || !uniqueExercises.includes(selectedProgressExercise)){
+    selectedProgressExercise = uniqueExercises[0];
+  }
+
+  select.innerHTML = uniqueExercises.map(name =>
+    `<option value="${escapeHtml(name)}" ${name === selectedProgressExercise ? 'selected' : ''}>${escapeHtml(name)}</option>`
+  ).join('');
+
+  renderProgressChart(selectedProgressExercise);
+}
+
+function renderProgressChart(exerciseName){
+  selectedProgressExercise = exerciseName;
+  const body = document.getElementById('progressBody');
+  const matching = entries.filter(e => e.exercise === exerciseName);
+
+  let points;
+  if(progressViewMode === 'week'){
+    const byWeek = {};
+    matching.forEach(e=>{
+      const wk = weekKey(e.date);
+      const val = progressMetricMode === 'e1rm' ? estimatedOneRepMax(e.weight, e.reps) : e.weight;
+      if(!byWeek[wk] || val > byWeek[wk]) byWeek[wk] = val;
+    });
+    const weeks = Object.keys(byWeek).sort((a,b)=> a.localeCompare(b));
+    points = weeks.map(w => ({ date: w, weight: byWeek[w] }));
+  } else {
+    const byDate = {};
+    matching.forEach(e=>{
+      const val = progressMetricMode === 'e1rm' ? estimatedOneRepMax(e.weight, e.reps) : e.weight;
+      if(!byDate[e.date] || val > byDate[e.date]) byDate[e.date] = val;
+    });
+    const dates = Object.keys(byDate).sort((a,b)=> a.localeCompare(b));
+    points = dates.map(d => ({ date: d, weight: byDate[d] }));
+  }
+
+  const unitWord = progressViewMode === 'week' ? 'week' : 'session';
+
+  if(points.length < 2){
+    const only = points[0];
+    body.innerHTML = `
+      ${only ? `<div class="progress-summary"><div class="progress-summary-main">${fmtW(only.weight)}</div></div><div class="progress-summary-label">Logged once so far</div>` : ''}
+      <div class="chart-empty">Log "${escapeHtml(exerciseName)}" again in a different ${unitWord} to start seeing a trend.</div>
+    `;
+    return;
+  }
+
+  const first = points[0].weight;
+  const last = points[points.length - 1].weight;
+  const deltaKg = last - first;
+  const deltaClass = deltaKg > 0 ? 'up' : (deltaKg < 0 ? 'down' : '');
+  const deltaSign = deltaKg > 0 ? '+' : '';
+  const deltaDisplay = currentUnit === 'lb' ? Math.round(deltaKg * KG_TO_LB * 10) / 10 : Math.round(deltaKg * 10) / 10;
+
+  const weights = points.map(p => p.weight);
+  const minW = Math.min(...weights);
+  const maxW = Math.max(...weights);
+  const range = maxW - minW || 1;
+  const padRange = range * 0.2 || 5;
+
+  const W = 640, H = 200;
+  const marginL = 8, marginR = 8, marginT = 28, marginB = 30;
+  const plotW = W - marginL - marginR;
+  const plotH = H - marginT - marginB;
+  const n = points.length;
+
+  const xFor = i => n === 1 ? marginL + plotW/2 : marginL + (i/(n-1)) * plotW;
+  const yFor = w => marginT + plotH - ((w - (minW - padRange)) / ((maxW + padRange) - (minW - padRange))) * plotH;
+
+  const coords = points.map((p,i) => ({ x: xFor(i), y: yFor(p.weight), weight: p.weight, date: p.date }));
+  const polylinePoints = coords.map(c => `${c.x},${c.y}`).join(' ');
+
+  const maxWeightVal = Math.max(...weights);
+
+  const dots = coords.map(c => {
+    const isPR = c.weight === maxWeightVal;
+    return `
+      <circle cx="${c.x}" cy="${c.y}" r="${isPR ? 6 : 4.5}" fill="${isPR ? '#e8b923' : '#f2efe9'}" stroke="#1c1b1a" stroke-width="2"/>
+      <text x="${c.x}" y="${c.y - 12}" text-anchor="middle" class="progress-point-label">${toDisplayWeight(c.weight)}</text>
+    `;
+  }).join('');
+
+  // show date labels sparsely if many points
+  const labelStep = n <= 6 ? 1 : Math.ceil(n / 6);
+  const dateLabels = coords.map((c,i) => {
+    if(i % labelStep !== 0 && i !== n-1) return '';
+    const d = new Date(c.date + 'T00:00:00');
+    const shortDate = d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    const label = progressViewMode === 'week' ? `Wk ${shortDate}` : shortDate;
+    return `<text x="${c.x}" y="${H - 8}" text-anchor="middle" class="progress-date-label">${label}</text>`;
+  }).join('');
+
+  body.innerHTML = `
+    <div class="progress-summary">
+      <div class="progress-summary-main">${fmtW(last)}</div>
+      <div class="progress-summary-delta ${deltaClass}">${deltaSign}${deltaDisplay}${currentUnit} since first log</div>
+    </div>
+    <div class="progress-summary-label">${exerciseName} · ${progressMetricMode === 'e1rm' ? 'Est. 1RM' : 'Top weight'} · ${n} ${unitWord}${n === 1 ? '' : 's'} logged</div>
+    <div class="progress-chart-wrap">
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%; min-width:400px; height:${H}px;">
+        <polyline points="${polylinePoints}" fill="none" stroke="#e8b923" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        ${dots}
+        ${dateLabels}
+      </svg>
+    </div>
+  `;
+}
+
 function getPRs(){
   const prs = {};
   entries.forEach(e=>{
@@ -936,6 +2161,10 @@ function isEntryPR(entry, prs){
 function render(){
   const container = document.getElementById('logContainer');
   renderChart();
+  renderProgressPanel();
+  renderWeekdayGrid();
+  renderMilestones();
+  renderPRBoard();
 
   document.getElementById('statTotal').textContent = entries.length;
   const uniqueDays = new Set(entries.map(e=>e.date));
@@ -948,8 +2177,19 @@ function render(){
     return;
   }
 
+  const searchInput = document.getElementById('historySearch');
+  const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+  const filteredEntries = searchTerm
+    ? entries.filter(e => e.exercise.toLowerCase().includes(searchTerm))
+    : entries;
+
+  if(filteredEntries.length === 0){
+    container.innerHTML = `<div class="empty"><b>No matches</b>No logged sets match "${escapeHtml(searchInput.value.trim())}".</div>`;
+    return;
+  }
+
   const byDate = {};
-  entries.forEach(e=>{
+  filteredEntries.forEach(e=>{
     if(!byDate[e.date]) byDate[e.date] = [];
     byDate[e.date].push(e);
   });
@@ -963,7 +2203,7 @@ function render(){
         <div class="entry">
           <div>
             <div class="entry-name">${escapeHtml(e.exercise)}${pr ? '<span class="pr-tag">PR</span>' : ''}</div>
-            <div class="entry-detail"><b>${e.sets}</b> sets × <b>${e.reps}</b> reps @ <b>${e.weight}kg</b>${e.time ? ' · ' + fmtTime(e.time) : ''}</div>
+            <div class="entry-detail"><b>${e.sets}</b> sets × <b>${e.reps}</b> reps @ <b>${fmtW(e.weight)}</b>${e.time ? ' · ' + fmtTime(e.time) : ''}</div>
           </div>
           <div class="entry-right">
             <button class="edit-btn" onclick="editEntry('${e.id}')">Edit</button>
@@ -981,6 +2221,35 @@ function escapeHtml(str){
   return div.innerHTML;
 }
 
+async function repeatLastSet(){
+  if(entries.length === 0) return;
+  const last = entries.reduce((a,b) => a.createdAt > b.createdAt ? a : b);
+
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0,10);
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+
+  entries.push({
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2,7),
+    exercise: last.exercise,
+    weight: last.weight,
+    reps: last.reps,
+    sets: last.sets,
+    date: dateStr,
+    time: `${hh}:${mm}`,
+    createdAt: now.getTime()
+  });
+
+  await saveEntries();
+  render();
+
+  const btn = document.getElementById('repeatLastBtn');
+  const original = btn.textContent;
+  btn.textContent = `✓ Logged ${last.exercise}`;
+  setTimeout(()=>{ btn.textContent = original; }, 1500);
+}
+
 async function deleteEntry(id){
   entries = entries.filter(e=> e.id !== id);
   await saveEntries();
@@ -994,7 +2263,7 @@ function editEntry(id){
 
   editingId = id;
   document.getElementById('exercise').value = entry.exercise;
-  document.getElementById('weight').value = entry.weight;
+  document.getElementById('weight').value = toDisplayWeight(entry.weight);
   document.getElementById('reps').value = entry.reps;
   document.getElementById('sets').value = entry.sets;
   document.getElementById('entryDate').value = entry.date;
@@ -1020,7 +2289,8 @@ function cancelEdit(){
 document.getElementById('entryForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
   const exercise = document.getElementById('exercise').value.trim();
-  const weight = parseFloat(document.getElementById('weight').value);
+  const weightDisplay = parseFloat(document.getElementById('weight').value);
+  const weight = fromDisplayWeight(weightDisplay);
   const reps = parseInt(document.getElementById('reps').value);
   const sets = parseInt(document.getElementById('sets').value);
   const entryDate = document.getElementById('entryDate').value;
@@ -1077,7 +2347,22 @@ function setDefaultDateTime(){
   document.getElementById('entryTime').value = `${hh}:${mm}`;
 }
 setDefaultDateTime();
+document.querySelectorAll('#unitToggle button').forEach(btn=>{
+  btn.classList.toggle('active', btn.dataset.unit === currentUnit);
+});
+document.getElementById('weightLabel').textContent = currentUnit === 'lb' ? 'Weight (lb)' : 'Weight (kg)';
+document.getElementById('weight').placeholder = currentUnit === 'lb' ? '175' : '80';
+
+loadCustomExercises();
 renderBodyPartTabs();
+loadTemplates();
+renderTemplateList();
+calculatePlates();
+loadGymDays();
+renderWeekdayGrid();
+renderMilestones();
+loadBodyweights();
+renderBodyweightPanel();
 
 loadEntries();
 </script>

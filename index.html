@@ -46,6 +46,30 @@
     text-transform:uppercase;
     margin-bottom:6px;
   }
+  .nickname-row{
+    position:absolute;
+    top:46px;
+    right:0;
+    display:flex;
+    align-items:center;
+  }
+  #nicknameInput{
+    background:transparent;
+    border:none;
+    border-bottom:1px solid transparent;
+    color:var(--yellow);
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:22px;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    text-align:right;
+    padding:6px 2px;
+    outline:none;
+    width:220px;
+  }
+  #nicknameInput::placeholder{ color:var(--steel); font-weight:500; font-size:14px; }
+  #nicknameInput:focus{ border-bottom-color:var(--yellow); }
   h1{
     font-family:'Oswald', sans-serif;
     font-weight:700;
@@ -139,6 +163,7 @@
 
   form{ display:grid; gap:14px; }
   .row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  .row-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   label{
     font-family:'JetBrains Mono', monospace;
     font-size:10px;
@@ -888,9 +913,12 @@
       <button data-unit="kg" class="active" onclick="setUnit('kg')">KG</button>
       <button data-unit="lb" onclick="setUnit('lb')">LB</button>
     </div>
+    <div class="nickname-row">
+      <input type="text" id="nicknameInput" placeholder="Your name" oninput="saveNickname()">
+    </div>
     <div class="eyebrow">// Personal training log</div>
     <h1>IRON <span>LOG</span></h1>
-    <p class="subline">Every set counts. Log it, track it, break it next time.</p>
+    <p class="subline" id="sublineText">Every set counts. Log it, track it, break it next time.</p>
     <div class="bar"></div>
   </header>
 
@@ -972,12 +1000,37 @@
   </div>
 
   <div class="panel">
+    <div class="panel-title">Training history</div>
+    <input type="text" class="history-search" id="historySearch" placeholder="Search by exercise name..." oninput="render()">
+    <div id="logContainer">
+      <div class="empty">
+        <b>Log is empty</b>
+        Add your first set above — this is where your progress starts.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
     <div class="panel-title" id="formTitle">Log a set</div>
     <button class="template-btn" style="width:100%; margin-bottom:16px;" onclick="repeatLastSet()" id="repeatLastBtn">↻ Repeat last set</button>
     <form id="entryForm">
+      <div class="row-2">
+        <div>
+          <label for="formBodyPart">Body part</label>
+          <select class="progress-select" id="formBodyPart" onchange="onFormBodyPartChange()" style="margin-bottom:0;">
+            <option value="">Select...</option>
+          </select>
+        </div>
+        <div>
+          <label for="formExerciseSelect">Exercise</label>
+          <select class="progress-select" id="formExerciseSelect" onchange="onFormExerciseSelectChange()" style="margin-bottom:0;" disabled>
+            <option value="">Pick body part first</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         <div class="full" style="grid-column:1/-1;">
-          <label for="exercise">Exercise</label>
+          <label for="exercise">Exercise name <span style="text-transform:none; color:var(--steel); font-weight:400;">(or type your own)</span></label>
           <input type="text" id="exercise" placeholder="e.g. Bench press" required>
         </div>
       </div>
@@ -1060,21 +1113,33 @@
     <div id="progressBody"></div>
   </div>
 
-  <div class="panel">
-    <div class="panel-title">Training history</div>
-    <input type="text" class="history-search" id="historySearch" placeholder="Search by exercise name..." oninput="render()">
-    <div id="logContainer">
-      <div class="empty">
-        <b>Log is empty</b>
-        Add your first set above — this is where your progress starts.
-      </div>
-    </div>
-  </div>
-
   <footer>Iron Log — your data stays on this device</footer>
 </div>
 
 <script>
+// --- Nickname ---
+const NICKNAME_KEY = 'iron-log-nickname';
+
+function saveNickname(){
+  const val = document.getElementById('nicknameInput').value.trim();
+  localStorage.setItem(NICKNAME_KEY, val);
+  updateSubline(val);
+}
+
+function updateSubline(name){
+  const subline = document.getElementById('sublineText');
+  if(!subline) return;
+  subline.textContent = name
+    ? `Every set counts, ${name}. Log it, track it, break it next time.`
+    : `Every set counts. Log it, track it, break it next time.`;
+}
+
+function loadNickname(){
+  const saved = localStorage.getItem(NICKNAME_KEY) || '';
+  document.getElementById('nicknameInput').value = saved;
+  updateSubline(saved);
+}
+
 // --- Unit system (kg/lb) ---
 const UNIT_KEY = 'iron-log-unit';
 const KG_TO_LB = 2.20462;
@@ -1310,6 +1375,8 @@ function rebuildExerciseDB(){
     const base = DEFAULT_EXERCISE_DB[part].filter(name => !removed.includes(name));
     EXERCISE_DB[part] = [...base, ...added];
   });
+  renderFormBodyPartOptions();
+  onFormBodyPartChange();
 }
 
 function addCustomExercise(){
@@ -1318,12 +1385,13 @@ function addCustomExercise(){
   if(!name) return;
   if(!customExercises.added[selectedBodyPart]) customExercises.added[selectedBodyPart] = [];
   const alreadyExists = EXERCISE_DB[selectedBodyPart].some(n => n.toLowerCase() === name.toLowerCase());
-  if(alreadyExists) { input.value=''; return; }
+  if(alreadyExists) { input.value=''; quickAddExercise(name); return; }
   customExercises.added[selectedBodyPart].push(name);
   saveCustomExercises();
   rebuildExerciseDB();
   input.value = '';
   renderSuggestionList();
+  quickAddExercise(name);
 }
 
 function removeSuggestionExercise(name){
@@ -1378,8 +1446,57 @@ function renderSuggestionList(){
   `;
 }
 
+function renderFormBodyPartOptions(){
+  const select = document.getElementById('formBodyPart');
+  if(!select) return;
+  const currentVal = select.value;
+  select.innerHTML = `<option value="">Select...</option>` +
+    Object.keys(EXERCISE_DB).map(part => `<option value="${part}">${part}</option>`).join('');
+  if(currentVal && EXERCISE_DB[currentVal]) select.value = currentVal;
+}
+
+function onFormBodyPartChange(){
+  const bodyPart = document.getElementById('formBodyPart').value;
+  const exerciseSelect = document.getElementById('formExerciseSelect');
+
+  if(!bodyPart){
+    exerciseSelect.innerHTML = `<option value="">Pick body part first</option>`;
+    exerciseSelect.disabled = true;
+    return;
+  }
+
+  const exercises = EXERCISE_DB[bodyPart] || [];
+  exerciseSelect.innerHTML = `<option value="">Select exercise...</option>` +
+    exercises.map(name => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+  exerciseSelect.disabled = false;
+}
+
+function onFormExerciseSelectChange(){
+  const val = document.getElementById('formExerciseSelect').value;
+  if(val){
+    document.getElementById('exercise').value = val;
+  }
+}
+
+function findBodyPartForExercise(name){
+  const lower = name.toLowerCase().trim();
+  for(const part of Object.keys(EXERCISE_DB)){
+    if(EXERCISE_DB[part].some(n => n.toLowerCase() === lower)) return part;
+  }
+  return null;
+}
+
 function quickAddExercise(name){
   if(editingId) cancelEdit();
+  const part = findBodyPartForExercise(name);
+  if(part){
+    document.getElementById('formBodyPart').value = part;
+    onFormBodyPartChange();
+    document.getElementById('formExerciseSelect').value = name;
+  } else {
+    document.getElementById('formBodyPart').value = '';
+    onFormBodyPartChange();
+  }
   document.getElementById('exercise').value = name;
   document.getElementById('entryForm').scrollIntoView({ behavior:'smooth', block:'start' });
   document.getElementById('weight').focus();
@@ -2262,6 +2379,10 @@ function editEntry(id){
   if(!entry) return;
 
   editingId = id;
+  const part = findBodyPartForExercise(entry.exercise);
+  document.getElementById('formBodyPart').value = part || '';
+  onFormBodyPartChange();
+  if(part) document.getElementById('formExerciseSelect').value = entry.exercise;
   document.getElementById('exercise').value = entry.exercise;
   document.getElementById('weight').value = toDisplayWeight(entry.weight);
   document.getElementById('reps').value = entry.reps;
@@ -2280,6 +2401,7 @@ function editEntry(id){
 function cancelEdit(){
   editingId = null;
   document.getElementById('entryForm').reset();
+  onFormBodyPartChange();
   setDefaultDateTime();
   document.getElementById('formTitle').textContent = 'Log a set';
   document.getElementById('submitBtn').textContent = 'Add to log';
@@ -2326,6 +2448,7 @@ document.getElementById('entryForm').addEventListener('submit', async (e)=>{
   await saveEntries();
   render();
   e.target.reset();
+  onFormBodyPartChange();
 
   if(editingId){
     editingId = null;
@@ -2353,6 +2476,7 @@ document.querySelectorAll('#unitToggle button').forEach(btn=>{
 document.getElementById('weightLabel').textContent = currentUnit === 'lb' ? 'Weight (lb)' : 'Weight (kg)';
 document.getElementById('weight').placeholder = currentUnit === 'lb' ? '175' : '80';
 
+loadNickname();
 loadCustomExercises();
 renderBodyPartTabs();
 loadTemplates();
@@ -2365,6 +2489,15 @@ loadBodyweights();
 renderBodyweightPanel();
 
 loadEntries();
+
+// --- Offline support ---
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => {
+      console.error('Service worker registration failed:', err);
+    });
+  });
+}
 </script>
 </body>
 </html>
